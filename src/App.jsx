@@ -8,7 +8,7 @@ import Blog from './pages/Blog'
 const App = () => {
   return (
     <main className='overlow-hidden text-tertiary'>
-      <h1>Hello</h1>
+
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
