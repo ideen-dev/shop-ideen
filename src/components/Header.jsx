@@ -12,11 +12,11 @@ function Header() {
     const toggleMenu = () => setMenuOpen((prev) => !prev)
 
     return (
-        <header className='max-padd-containe w-full mb-2'>
+        <header className='max-padd-container w-full mb-2'>
 
             <div className=' flexBetween py-3'>
                 {/* LOGO */}
-                <Link className='flex flex-1 bold-28' to={"/"}>
+                <Link className='flex flex-1 bold-24 xl:bold-28' to={"/"}>
                     Shopanza
                 </Link>
 
@@ -55,7 +55,7 @@ function Header() {
 
                     {/* USER PROFIL */}
                         < div className='group relative'>
-                            <button className='btn-dark flexCenter gap-x-2 '>
+                            <button className='btn-dark flexCenter gap-x-2'>
                                 Login
                                 <RiUserLine className='text-xl'/>
                             </button>

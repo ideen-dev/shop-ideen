@@ -9,7 +9,7 @@ function Hero() {
                 {/* LIFTE SIDE */}
 
                 <div className='place-content-end max-xs:min-w-80'>
-                    <div lang="p-4">
+                    <div className="p-4">
                         <p className='text-white max-w-xs'>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.  Voluptatum et debitis perspiciatis!
                         </p>
