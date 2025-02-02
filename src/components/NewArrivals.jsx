@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Title from './Title'
 import Item from './Item'
-import {products} from "../assets/data"
+import { products } from "../assets/data"
 
 
 // Import Swiper React components
@@ -16,18 +16,18 @@ import { Autoplay } from 'swiper/modules';
 
 const NewArrivals = () => {
 
-const [PopularProducts, setPopularProducts] = useState([])
+  const [PopularProducts, setPopularProducts] = useState([])
 
-useEffect(()=>{
-const data=products.slice(0,7)
-console.log(products)
-},[products]
+  useEffect(() => {
+    const data = products.slice(0, 7)
+    setPopularProducts(data);
+  }, [products]
 
-)
+  )
 
 
   return (
-    <section>
+    <section className='max-padd-container pt-16'>
       <Title title1="New" title2={"Arrivals"} titleStyles={'pb-10'} paraStyles={'!block'} />
 
       {/* CONTAINER */}
@@ -60,13 +60,14 @@ console.log(products)
         modules={[Autoplay]}
         className="h-[399px] mt-5"
       >
-        <SwiperSlide>
 
+        {PopularProducts.map((product) => (
 
-          <Item />
-
-
-        </SwiperSlide>
+          <SwiperSlide key={product._id}>
+            <Item product={product} />
+          </SwiperSlide>
+           
+        ))} 
 
       </Swiper>
 

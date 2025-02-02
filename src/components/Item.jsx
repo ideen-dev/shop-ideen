@@ -1,9 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
-function Item() {
+
+
+function Item({ product }) {
+  
+  const [overed, setovered] = useState(false)
+  
   return (
-    <div>Item</div>
+    <div className='overflow-hidden'>
+      {/* IMAGE */}
+
+      <Link to={'/'}
+
+        onMouseEnter={() => setovered(true)}
+        onMouseLeave={() => setovered(false)}
+
+        className='flexCenter p-2 bg-[#f5f5f5] overflow-hidden '
+      >
+        <img
+          src={
+            product.image.length > 1 && overed
+              ? product.image[1]
+              : product.image[0]
+          }
+          alt={product.name}
+          className='transition-all duration-300' />
+      </Link>
+
+      {/* INFO PRODUCT */}
+      <div className=' p-3'>
+        <h4 className='bold-15 line-clamp-1 !py-0'>{product.name}</h4>
+        <div className='flexBetween pt-1'>
+          <p className='h5' >{product.category}</p>
+          <h5>${product.price}.00</h5>
+        </div>
+        <p className='line-clamp-2 py-1'>{product.description}</p>
+
+      </div>
+
+
+    </div>
   )
 }
 
