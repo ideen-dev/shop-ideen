@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { createContext } from 'react'
+import { products } from '../assets/data'
 
-function ShopContextProvider() {
-  return (
-    <div>ShopContextProvider</div>
-  )
-}
+export const ShopContext = createContext()
+
+function ShopContextProvider(props) {
+
+    const value = { products }
+    return (
+        <ShopContext.Provider value={value}>
+            {props.children}
+        </ShopContext.Provider>
+    )
+} 
 
 export default ShopContextProvider

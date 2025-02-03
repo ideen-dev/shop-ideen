@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Title from './Title'
 import Item from './Item'
-import { products } from "../assets/data"
+//import { products } from "../assets/data"
+import { ShopContext } from '../context/ShopContext';
 
 
 // Import Swiper React components
@@ -15,6 +16,8 @@ import { Autoplay } from 'swiper/modules';
 
 
 const NewArrivals = () => {
+
+  const { products } = useContext(ShopContext)
 
   const [PopularProducts, setPopularProducts] = useState([])
 
@@ -58,7 +61,7 @@ const NewArrivals = () => {
         }}
 
         modules={[Autoplay]}
-        className="h-[399px] mt-5"
+        className="h-[399px] "
       >
 
         {PopularProducts.map((product) => (
@@ -66,15 +69,10 @@ const NewArrivals = () => {
           <SwiperSlide key={product._id}>
             <Item product={product} />
           </SwiperSlide>
-           
-        ))} 
+
+        ))}
 
       </Swiper>
-
-
-
-
-
 
     </section>
   )
