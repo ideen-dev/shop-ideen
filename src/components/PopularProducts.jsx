@@ -10,7 +10,7 @@ const PopularProducts = () => {
 
     const data = products.filter(item => item.popular)
     setPopularProducts(data.slice(0,5))
-  }
+  },[products]
   )
 
 

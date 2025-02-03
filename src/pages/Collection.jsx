@@ -15,6 +15,7 @@ function Collection() {
 
 
     const toggleFilter = (value, setState) => {
+
         setState((prev) => prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
 
         );
@@ -35,12 +36,20 @@ function Collection() {
             );
         }
 
+
         if (category.length) {
-            filtred = filtred.filter((product) => {
+
+            filtred = filtred.filter((product) =>
                 category.includes(product.category)
-            });
+            );
 
         }
+
+
+        if (category.length) {
+            filtred = filtred.filter((product) => category.includes(product.category));
+        }
+
 
         return filtred;
 
@@ -86,7 +95,7 @@ function Collection() {
         <div className='max-padd-container !px-0'>
             <div className='flex flex-col sm:flex-row gap-8 mb-16'>
                 {/* FILTERS  */}
-                <div className='min-w-72 bg-primary p-4 mt-8  pl-6 lg:pl-12   '>
+                <div className='min-w-72 bg-primary p-4 pt-8  pl-6 lg:pl-12   '>
                     <Search />
                     <div className='pl-5 py-3 mt-4 bg-white rounded-xl '>
                         <h5 className='h5 mb-4 '>Categories</h5>
@@ -130,13 +139,46 @@ function Collection() {
                 {/* RIGH SIDE  */}
                 <div className='pr-5 rounded-l-xl'>
                     <div className='grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-6'>
-                                
-                        {getPaginatedProducts().length > 0 ? getPaginatedProducts().map((product) => (<Item product={product} key={product.name} />)) : (<p> No produit </p>)}
-                    
+
+                        {getPaginatedProducts().length > 0 ? getPaginatedProducts().map((product) => (<Item product={product} key={product.name} />)) : (<p> No product found for selected filter </p>)}
+
                     </div>
 
                     {/* PAGINATION  */}
+                    <div className='flexCenter flex-wrap gap-4 mt-14 mb-10'>
+                        <button
+                            disabled={currentPage === 1}
+                            onClick={() => setcurrentPage((prev) => prev - 1)}
+                            className={`${currentPage === 1 && "opacity-50 cursor-not-allowed"} btn-secondary !py-1 !px-3`}
+                        >
+                            Previous
+                        </button>
+                        {/* PAGE NUMBERS  */}
 
+                        {Array.from({ length: totalPages }, (_, index) => (
+
+                            <button
+                                key={index + 1}
+                                onClick={() => setcurrentPage(index + 1)}
+                                className={`${currentPage === index + 1 && "!bg-tertiary text-white"} btn-light !py-1 !px-3 `}
+                            >
+
+                                {index + 1}
+
+                            </button>
+                        ))}
+                        <button
+                            disabled={currentPage === totalPages}
+                            onClick={() => setcurrentPage((prev) => prev + 1)}
+                            className={`${currentPage === totalPages && "opacity-50 cursor-not-allowed"} btn-secondary !py-1 !px-3`}
+                        >
+                            Next
+                        </button>
+
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
