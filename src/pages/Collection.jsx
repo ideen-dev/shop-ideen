@@ -105,7 +105,7 @@ function Collection() {
                                 "Cameras",
                                 "Mobiles",
                                 "Speakers",
-                                "Mouses",
+                                "Mouse",
                                 "Watches"
                             ].map((cat) => (
                                 <label className='flex gap-2 medium-14 text-gray-30 ' key={cat} >

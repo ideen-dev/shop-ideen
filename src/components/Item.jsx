@@ -12,7 +12,7 @@ function Item({ product }) {
     <div className='overflow-hidden'>
       {/* IMAGE */}
 
-      <Link to={'/'}
+      <Link to={`/product/${product._id}`}
 
         onMouseEnter={() => setovered(true)}
         onMouseLeave={() => setovered(false)}
