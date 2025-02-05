@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [product, setproduct] = useState(null);
   const [image, setImage] = useState("");
   const [color, setColor] = useState("");
@@ -45,9 +45,9 @@ const Product = () => {
               {product.image.map((item, i) => (
                 <img
                   src={item}
-                  alt="prdImg"
+                  alt="productImg"
                   key={i}
-                  className="object-cover aspect-square rounded-lg    "
+                  className="object-cover aspect-square rounded-lg"
                 />
               ))}
             </div>
@@ -101,7 +101,7 @@ const Product = () => {
             </div>
             <div className="flex items-center gap-x-4 ">
               <button
-                onClick={() => {}}
+                onClick={() => addToCart(product._id, color)}
                 className="btn-secondary !rounded-lg sm:w-1/2 flexCenter gap-x-2 capitalize"
               >
                 Add to cart
@@ -125,9 +125,9 @@ const Product = () => {
         </div>
         <ProductDescription />
         <ProductFeatures />
-        <RelatedProducts  category={product.category}/>
+        <RelatedProducts category={product.category} />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
