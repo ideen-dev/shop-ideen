@@ -8,6 +8,7 @@ import Product from "./pages/Product";
 import { ToastContainer } from "react-toastify";
 import Cart from "./pages/Cart";
 
+
 const App = () => {
   return (
     <main className="overlow-hidden text-tertiary">
