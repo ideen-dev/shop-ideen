@@ -6,8 +6,14 @@ import CartTotal from "../components/CartTotal";
 import { FaMinus, FaPlus, FaRegWindowClose } from "react-icons/fa";
 
 const Cart = () => {
-  const { cartItems, products, currency, getCartCount, updateQuantity } =
-    useContext(ShopContext);
+  const {
+    navigate,
+    cartItems,
+    products,
+    currency,
+    getCartCount,
+    updateQuantity,
+  } = useContext(ShopContext);
 
   const [cartData, setCartData] = useState([]);
   const [quantities, setQuantities] = useState({});
@@ -46,7 +52,6 @@ const Cart = () => {
     updateQuantity(id, color, newValue);
   };
   const decrement = (id, color) => {
-
     const key = `${id}-${color}`;
 
     if (quantities[key] > 1) {
@@ -89,17 +94,28 @@ const Cart = () => {
                         <h5 className="h5  !my-0 line-clamp-1">
                           {productData.name}
                         </h5>
-                        <FaRegWindowClose className="cursor-pointer text-secondary " onClick={()=>updateQuantity(item._id,item.color,0)} />
+                        <FaRegWindowClose
+                          className="cursor-pointer text-secondary "
+                          onClick={() =>
+                            updateQuantity(item._id, item.color, 0)
+                          }
+                        />
                       </div>
                       <p className="bold-14 my-0.5">{item.color}</p>
                       <div className="flexBetween ">
                         <div className="flex items-center ring-1 ring-slate-900/5 rounded-full overflow-hidden bg-primary  ">
-                          <button onClick={()=>decrement(item._id,item.color)}  className="text-secondary p-1.5 bg-white rounded-full shadow-md">
+                          <button
+                            onClick={() => decrement(item._id, item.color)}
+                            className="text-secondary p-1.5 bg-white rounded-full shadow-md"
+                          >
                             {" "}
                             <FaMinus className="text-xs" />
                           </button>
                           <p className="px-2">{quantities[key]}</p>
-                          <button onClick={()=>increment(item._id,item.color)}  className="text-secondary p-1.5 bg-white rounded-full shadow-md">
+                          <button
+                            onClick={() => increment(item._id, item.color)}
+                            className="text-secondary p-1.5 bg-white rounded-full shadow-md"
+                          >
                             <FaPlus className="text-xs" />
                           </button>
                         </div>
@@ -117,7 +133,11 @@ const Cart = () => {
           <div className="flex my-20  ">
             <div className="w-full my-5 sm:w-[450px] ">
               <CartTotal />
-              <button className=" btn-secondary mt-7">
+
+              <button
+                onClick={() => navigate("/place-order")}
+                className=" btn-secondary mt-7"
+              >
                 Proceed to checkout
               </button>
             </div>

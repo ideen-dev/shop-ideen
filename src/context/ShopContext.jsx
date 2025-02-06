@@ -7,7 +7,7 @@ export const ShopContext = createContext();
 
 function ShopContextProvider(props) {
   const [search, setSearch] = useState([]);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const currency = "$";
   const delivery_charges = 10;
   const [cartItems, setCartItems] = useState({});
@@ -80,7 +80,7 @@ function ShopContextProvider(props) {
   useEffect(() => {}, [cartItems]);
 
   const value = {
-   // navigate,
+   navigate,
     products,
     search,
     setSearch,

@@ -9,7 +9,7 @@ import { ShopContext } from "../context/ShopContext";
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen((prev) => !prev);
- const {getCartCount} = useContext(ShopContext);
+ const {getCartCount,navigate} = useContext(ShopContext);
 
   return (
     <header className="max-padd-container w-full mb-2">
@@ -61,7 +61,9 @@ function Header() {
 
           {/* USER PROFIL */}
           <div className="group relative">
-            <button className="btn-dark flexCenter gap-x-2">
+            <button 
+            onClick={()=>navigate('/login')}
+            className="btn-dark flexCenter gap-x-2">
               Login
               <RiUserLine className="text-xl" />
             </button>
