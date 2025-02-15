@@ -5,11 +5,19 @@ import { FaBars, FaBarsStaggered } from "react-icons/fa6";
 import { TbUserCircle } from "react-icons/tb";
 import { RiUserLine } from "react-icons/ri";
 import { ShopContext } from "../context/ShopContext";
+import Dropdown from "./Dropdown";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen((prev) => !prev);
- const {getCartCount,navigate} = useContext(ShopContext);
+
+  const { getCartCount, navigate, token, setToken } = useContext(ShopContext);
+
+  const logout = () => {
+    setToken("");
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   return (
     <header className="max-padd-container w-full mb-2">
@@ -54,19 +62,31 @@ function Header() {
             <div className="ring-1 ring-slate-900 rounded-full px-3 bold-18">
               Cart
               <span className="bg-secondary text-white text-[12px] font-semibold absolute -top-3.5 -right-2 flexCenter w-4 h-4 rounded-full shadow-md">
-             {getCartCount()}
+                {getCartCount()}
               </span>
             </div>
           </Link>
 
           {/* USER PROFIL */}
           <div className="group relative">
-            <button 
-            onClick={()=>navigate('/login')}
-            className="btn-dark flexCenter gap-x-2">
-              Login
-              <RiUserLine className="text-xl" />
-            </button>
+            <div>
+              {token ? (
+                <div className="flexCenter  gap-2 items-center ">
+                  <h5 className="h5 m-0 ">Hey,Name</h5>
+                  <TbUserCircle className="text-[29px] cursor-pointer"/>
+                </div>
+              ) : (
+                <button
+                  onClick={() => navigate("/login")}
+                  className="btn-dark flexCenter gap-x-2"
+                >
+                  Login
+                  <RiUserLine className="text-xl" />
+                </button>
+              )} 
+            </div>
+            {/* DROPDOWN  */}
+            {token && <Dropdown onClick={logout}/>}
           </div>
         </div>
       </div>
